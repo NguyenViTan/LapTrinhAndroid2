@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity, TextInput, Pressable, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart,incrementQuantity,decrementQuantity,removeFromCart } from '../Cart';
@@ -35,7 +35,9 @@ const decreaseQuantity = (product) => {
     dispatch(decrementQuantity(product));
   }
 }
+
   return (
+    <ScrollView>
     <View style={styles.container}>
       <Image source={{ uri: product.image }} style={styles.image} />
       <Text style={styles.title}>{product.title}</Text>
@@ -70,12 +72,15 @@ const decreaseQuantity = (product) => {
 
        
       </View>
-      <Text >Gio hàng</Text>
+ 
+      <Text style={styles.title}>My Cart</Text>
       {cart.map((product,index) => (
-        <View style={{padding:10}} key={index}>
+        <View style={{padding:10 }} key={index}>
           <Text>{product.name}</Text>
-          <Image style={{ width: 100, height: 100, borderRadius: 8,marginTop:6 }}
+          <Image style={{ width: 100, height: 100, borderRadius: 20,marginTop:6 }}
               source={{ uri: product.image }}/>
+               <Text style={styles.title}>{product.title}</Text>
+      <Text style={styles.price}>Price: ${product.price.toFixed(2)}</Text>
           <Pressable
             style={{
               flexDirection: "row",
@@ -84,6 +89,7 @@ const decreaseQuantity = (product) => {
               backgroundColor: "#FF3366",
               borderRadius: 5,
               width: 120,
+   
             }}
           >
             <Pressable onPress={() => decreaseQuantity(product)}>
@@ -106,6 +112,7 @@ const decreaseQuantity = (product) => {
                 }}
               >
                 {product.quantity}
+             
               </Text>
             </Pressable>
 
@@ -115,16 +122,19 @@ const decreaseQuantity = (product) => {
                   fontSize: 20,
                   color: "white",
                   paddingHorizontal: 10,
+                  
                 }}
               >
                 +
               </Text>
             </Pressable>
           </Pressable>
+          
           </View>
              ))}
+            
     </View>
- 
+    </ScrollView>
   );
 };
 
@@ -143,6 +153,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 8,
+    marginTop:20,
     textAlign: 'center',
   },
   price: {
@@ -187,10 +198,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
   },
   buyButton: {
-backgroundColor: 'blue',
+backgroundColor: 'yellow',
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 4,
+  
   },
   buyButtonText: {
     color: 'white',

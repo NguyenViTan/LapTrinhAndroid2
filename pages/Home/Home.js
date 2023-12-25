@@ -37,14 +37,16 @@ export default function Home() {
 
   
     return (
+   
         <View>
+                 <ScrollView>
               {/* <Text style={styles.title}>Welcome to My Shop</Text> */}
                 <Image source={require('../../assets/bg.png')} style={styles.logo} />
               <View style={styles.catetitle}>
                 <Text style={{ fontSize: 20, color: 'red', fontWeight: '600'}}>Sản phẩm</Text>
                 <Text style={{ fontSize: 15 }}>Xem thêm</Text>
             </View>
-            <ScrollView>
+         
                 <View style={styles.container}>
                     {products.map((product) => (
                         <TouchableOpacity
@@ -62,19 +64,20 @@ export default function Home() {
                                     <Text style={styles.ratingText}>Rating: </Text>
                                     <FontAwesome name="star" style={styles.starIcon} />
                                     <Text style={styles.ratingValue}>{product.rating.rate.toFixed(1)}</Text>
-                                    <Text style={styles.ratingCount}>({product.rating.count} reviews)</Text>
-                                   
+                                    <Text style={styles.ratingCount}>({product.rating.count} )</Text>
+                                    
                                 </View>
                                
                             </View>
+                            
                         </TouchableOpacity>
                     ))}
                 </View>
+             
             </ScrollView>
         </View>
     );
 }
-
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',

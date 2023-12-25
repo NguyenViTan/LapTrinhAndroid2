@@ -10,21 +10,22 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
       <TouchableOpacity
         style={[
           styles.menuItem,
-          activeMenuItem === 'Home' && styles.activeMenuItem,
-        ]}
-        onPress={() => onMenuItemPress('Home')}
+        //   activeMenuItem === 'Home' && styles.activeMenuItem,
+         ]}
+        // onPress={() => onMenuItemPress('Home')}
       >
-        <Text style={styles.menuItemText}>Home</Text>
+        <Text   style={styles.menuItemText}>
+           Home</Text>
       </TouchableOpacity>
      
 
 
       <TouchableOpacity
-        style={[
+         style={[
           styles.menuItem,
-          activeMenuItem === 'Product' && styles.activeMenuItem,
-        ]}
-        onPress={() => onMenuItemPress('Product')}
+        //   activeMenuItem === 'Product' && styles.activeMenuItem,
+         ]}
+        // onPress={() => onMenuItemPress('Product')}
       >
         <Text style={styles.menuItemText}>Product</Text>
       </TouchableOpacity>
@@ -33,10 +34,10 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
 
       <TouchableOpacity
         style={[
-          styles.menuItem,
-          activeMenuItem === 'Category' && styles.activeMenuItem,
+           styles.menuItem,
+        //   activeMenuItem === 'Category' && styles.activeMenuItem,
         ]}
-        onPress={() => onMenuItemPress('Category')}
+        // onPress={() => onMenuItemPress('Category')}
       >
         <Text style={styles.menuItemText}>Category</Text>
       </TouchableOpacity>
@@ -45,9 +46,9 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
       <TouchableOpacity
         style={[
           styles.menuItem,
-          activeMenuItem === 'Login' && styles.activeMenuItem,
+        //   activeMenuItem === 'Login' && styles.activeMenuItem,
         ]}
-        onPress={() => onMenuItemPress('Login')}
+        // onPress={() => onMenuItemPress('Login')}
       >
         <Text style={styles.menuItemText}>Login</Text>
       </TouchableOpacity>
@@ -68,6 +69,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 16,
     alignItems: 'center',
+    
   },
   activeMenuItem: {
     backgroundColor: '#e0e0e0',
