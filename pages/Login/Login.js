@@ -1,40 +1,61 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigation = useNavigation();
+
+  const handleLogin = () => {
+    axios
+      .get('https://fakestoreapi.com/users')
+      .then(function (response) {
+        const users = response.data;
+        const user = users.find((user) => user.username === username && user.password === password);
+        if (user) {
+          // Successful login
+          Alert.alert('Success', 'Login successful');
+          navigation.navigate('Home'); 
+        } else {
+          // Invalid credentials
+          Alert.alert('Error', 'Invalid username or password');
+          navigation.navigate('Login'); 
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        Alert.alert('Error', 'An error occurred');
+      });
+  };
+
   return (
     <View style={styles.container}>
-
-
       <Text style={styles.title}>Login</Text>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
           placeholder="Username"
+          value={username}
+          onChangeText={(text) => setUsername(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           secureTextEntry
+          value={password}
+          onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
-      <StatusBar style="auto" />
-    
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  searchs:{
-    margin: 10,
-  },
-  aaa:{
-    flex:1,
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',

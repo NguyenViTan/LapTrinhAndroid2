@@ -13,7 +13,6 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (value) => {
-    // Kiểm tra giá trị số lượng và đảm bảo nó không nhỏ hơn 1
     const newQuantity = Math.max(parseInt(value), 1);
     setQuantity(newQuantity);
   };
@@ -28,16 +27,25 @@ const removeItemFromCart =(product)=>{
 const increaseQuantity = (product) => {
   dispatch(incrementQuantity(product));
 }
+
 const decreaseQuantity = (product) => {
   if(product.quantity == 1){
     dispatch(removeFromCart(product));
   }else{
     dispatch(decrementQuantity(product));
   }
+
 }
+const sumQuantity = () => {
+  let sum = 0;
+  cart.forEach((product) => {
+    sum += product.quantity * product.price;
+  });
+  return sum;
+};
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.titles}>
     <View style={styles.container}>
       <Image source={{ uri: product.image }} style={styles.image} />
       <Text style={styles.title}>{product.title}</Text>
@@ -52,30 +60,21 @@ const decreaseQuantity = (product) => {
         <Text style={styles.ratingCount}>({product.rating.count} reviews)</Text>
       </View>
       <View style={styles.buyContainer}>
-        <TextInput
-          style={styles.quantityInput}
-          value={String(quantity)}
-          onChangeText={handleQuantityChange}
-          keyboardType="numeric"
-        />
+      
         {cart.some((value)=>value.id==product.id)?
         (
           <Pressable style={styles.buyButton}  onPress={()=>removeItemFromCart (product)} >
-          <Text >Xóa giỏ hàng</Text>
+          <Text >Remove Cart</Text>
         </Pressable>
         ):(
         <Pressable style={styles.buyButton}  onPress={()=>addItemToCart(product)} >
-          <Text  >Thêm vào giỏ hàng</Text>
+          <Text  >Add To Cart</Text>
         </Pressable>
         )}
-
-
-       
       </View>
- 
-      <Text style={styles.title}>My Cart</Text>
+      <Text style={styles.cart}> Your Cart</Text>
       {cart.map((product,index) => (
-        <View style={{padding:10 }} key={index}>
+        <View  key={index}>
           <Text>{product.name}</Text>
           <Image style={{ width: 100, height: 100, borderRadius: 20,marginTop:6 }}
               source={{ uri: product.image }}/>
@@ -89,7 +88,6 @@ const decreaseQuantity = (product) => {
               backgroundColor: "#FF3366",
               borderRadius: 5,
               width: 120,
-   
             }}
           >
             <Pressable onPress={() => decreaseQuantity(product)}>
@@ -115,25 +113,24 @@ const decreaseQuantity = (product) => {
              
               </Text>
             </Pressable>
-
             <Pressable onPress={() => increaseQuantity(product)}>
               <Text
                 style={{
                   fontSize: 20,
                   color: "white",
-                  paddingHorizontal: 10,
-                  
+                  paddingHorizontal: 10,                 
                 }}
               >
                 +
               </Text>
             </Pressable>
-          </Pressable>
-          
-          </View>
-             ))}
-            
+          </Pressable>  
+          </View>         
+             ))}           
     </View>
+    <Text style={styles.cart}>Tổng tiền: {sumQuantity().toFixed(2)} VNĐ</Text>
+    <Text style={styles.cart}>Thanh Toán </Text>
+
     </ScrollView>
   );
 };
@@ -146,7 +143,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 200,
-    height: 200,
+    height: 250,
     marginBottom: 16,
   },
   title: {
@@ -155,6 +152,25 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     marginTop:20,
     textAlign: 'center',
+    
+  },
+  cart: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    marginTop:20,
+    textAlign: 'center',
+    color:"red"
+
+  },
+  titles: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    marginTop:20,
+    textAlign: 'center',
+   
+ 
   },
   price: {
     fontSize: 16,
