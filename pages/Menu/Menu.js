@@ -18,8 +18,8 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
       >
 
 
-        <Icon name="home" size={20} color="black" />
-        <Text style={styles.menuItemText}>Home</Text>
+        <Icon name="home" size={30} color="black" />
+       
       </TouchableOpacity>
 
 
@@ -30,8 +30,8 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
         ]}
         onPress={() => navigation.navigate('Product')}
       >
-          <Icon name="shopping-cart" size={20} color="black" />
-        <Text style={styles.menuItemText}>Pro</Text>
+          <Icon name="shopping-cart" size={30} color="black" />
+       
       </TouchableOpacity>
 
           
@@ -42,8 +42,8 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
         ]}
         onPress={() => navigation.navigate('Category')}
       >
-        <Icon name="folder-open" size={20} color="black" />
-        <Text style={styles.menuItemText}>Cate</Text>
+        <Icon name="folder-open" size={30} color="black" />
+       
       </TouchableOpacity>
       <TouchableOpacity
         style={[
@@ -52,8 +52,8 @@ function Menu({ activeMenuItem, onMenuItemPress }) {
         ]}
         onPress={() => navigation.navigate('Login')}
       >
-        <Icon name="user" size={20} color="black" />
-        <Text style={styles.menuItemText}>Login</Text>
+        <Icon name="user" size={30} color="black" />
+        
       </TouchableOpacity>
      
     </View>

@@ -3,25 +3,18 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'reac
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
-export default function Login() {
+export default function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      // Retrieve stored email and password from AsyncStorage
-      const storedUsername = await AsyncStorage.getItem('email');
-      const storedPassword = await AsyncStorage.getItem('password');
-
-      if (storedUsername === username && storedPassword === password) {
-        // Successful login
-        Alert.alert('Success', 'Login successful');
-        navigation.navigate('Home');
-      } else {
-        // Invalid credentials
-        Alert.alert('Error', 'Invalid username or password');
-      }
+      // Save email and password to AsyncStorage
+      await AsyncStorage.setItem('email', username);
+      await AsyncStorage.setItem('password', password);
+      Alert.alert('Success', 'Registration successful');
+      navigation.navigate('Login');
     } catch (error) {
       console.log(error);
       Alert.alert('Error', 'An error occurred');
@@ -30,7 +23,7 @@ export default function Login() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Đăng nhập</Text>
+      <Text style={styles.title}>Register</Text>
       <View style={styles.formContainer}>
         <TextInput
           style={styles.input}
@@ -45,13 +38,10 @@ export default function Login() {
           value={password}
           onChangeText={(text) => setPassword(text)}
         />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Đăng nhập</Text>
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.registerButton} onPress={() => navigation.navigate('Register')}>
-        <Text style={styles.registerButtonText}>Bạn chưa có tài khoản? Đăng ký</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -86,13 +76,6 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: 'white',
-    fontWeight: 'bold',
-  },
-  registerButton: {
-    marginTop: 10,
-  },
-  registerButtonText: {
-    color: 'blue',
     fontWeight: 'bold',
   },
 });
