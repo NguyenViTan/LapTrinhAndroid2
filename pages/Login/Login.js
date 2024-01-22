@@ -16,11 +16,11 @@ export default function Login() {
 
       if (storedUsername === username && storedPassword === password) {
         // Successful login
-        Alert.alert('Success', 'Login successful');
+        Alert.alert('Thành công', 'Đăng nhập thành công');
         navigation.navigate('Home');
       } else {
         // Invalid credentials
-        Alert.alert('Error', 'Invalid username or password');
+        Alert.alert('Không thành công', 'Đăng nhập không thành công');
       }
     } catch (error) {
       console.log(error);
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   title: {
     fontSize: 24,

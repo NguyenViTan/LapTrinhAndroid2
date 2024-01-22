@@ -13,11 +13,11 @@ export default function Register() {
       // Save email and password to AsyncStorage
       await AsyncStorage.setItem('email', username);
       await AsyncStorage.setItem('password', password);
-      Alert.alert('Success', 'Registration successful');
+      Alert.alert('Thành công', 'Đăng ký  thành công');
       navigation.navigate('Login');
     } catch (error) {
       console.log(error);
-      Alert.alert('Error', 'An error occurred');
+      Alert.alert('Không thành công', 'Đăng ký không thành công');
     }
   };
 

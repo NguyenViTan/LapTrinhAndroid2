@@ -33,7 +33,7 @@ export default function Home() {
             id: 2,
             title: 'Đàn Guitar Classic 02',
             image: 'https://bizweb.dktcdn.net/thumb/large/100/147/954/products/dan-guitar-ba-don-c100-7.jpg?v=1640341718510',
-            price: 9.99,
+            price:2.000000,
             description:'Đàn Guitar Acoustic Martin DX2E Rosewood là một trong các mẫu đàn thế hệ mới tới từ thương hiệu Martin danh giá của Mỹ. Dòng đàn mới áp dụng công nghệ xử lí gỗ hiện đại độc quyền của hãng, kết hợp cùng Equalizer Fishman hàng đầu tạo nên mẫu đàn biểu diễn bán chuyên thực sự chất lượng.',
             rating: {
               rate: 4.5,
